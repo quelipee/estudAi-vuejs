@@ -1,0 +1,7 @@
+{
+  "name": "estudai",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
