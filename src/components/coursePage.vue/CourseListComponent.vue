@@ -4,7 +4,7 @@
     class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg cursor-pointer transition-shadow duration-300" 
     @click="handleClick"
   >
-    <h2 class="text-xl font-semibold text-gray-800">{{ title }}</h2>
+    <h2 class="text-sm font-bold text-gray-600">{{ title }}</h2>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="flex items-center mx-4 mt-6 space-x-2">
-        <IonInput placeholder="Subject, Class, etc..." class="bg-white rounded-full px-4 py-2 w-full border border-gray-300" />
+        <div class="flex items-center justify-center mx-4 mt-6 space-x-2">
+        <IonInput placeholder="Subject, Class, etc..." class="bg-white rounded-full px-4 w-full border border-gray-300" />
         <IonIcon :icon="settingsIcon" class="text-purple-500 w-6 h-6" />
       </div>
     </div>

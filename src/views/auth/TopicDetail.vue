@@ -1,7 +1,7 @@
 <template>
     <ion-page>
       <ion-content class="flex flex-col items-center h-full bg-gray-100 p-4">
-        <div class="w-full max-w-md bg-white rounded-lg shadow-sm p-4">
+        <div class="w-full sm:max-w-sm md:max-md lg:max-lg bg-white rounded-lg shadow-sm p-4">
           <!-- Título do Tópico -->
           <h3 class="w-38 mb-5 text-left ml text-violet-900 font-bold">EstudAI</h3>
           <h1 class="text-2xl font-semibold text-gray-900 mb-2">{{ topicTitle }}</h1>
@@ -38,6 +38,7 @@
   
   <script lang="ts" setup>
   import { ref, onMounted } from 'vue';
+  import { IonContent, IonPage, IonSpinner } from '@/estudAI/components';
   
   // Dados fictícios
   const topicTitle = ref('Introdução ao Python');

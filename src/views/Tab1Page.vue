@@ -1,3 +1,4 @@
+
 <template>
   <IonPage>
     <IonContent class="bg-gray-100">
@@ -22,10 +23,9 @@
 </template>
 
 <script setup lang="ts">
-import { 
-  BannerComponent, HeaderComponent, SearchComponent, 
-  Filtercomponent, CourseComponent,
-  IonContent, IonPage, IonIcon, IonInput
+import { BannerComponent, HeaderComponent, SearchComponent, Filtercomponent, 
+  CourseComponent,
+  IonContent, IonPage, IonIcon, 
  } from '@/../src/estudAI/components';
 
 </script>

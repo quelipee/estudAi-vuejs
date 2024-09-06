@@ -2,7 +2,7 @@
 <template>
     <ion-page>
       <ion-content class="flex flex-col items-center p-4 bg-gray-100">
-        <div class="w-full max-w-md text-center p-5 h-full">
+        <div class="w-full sm:max-w-sm md:max-md lg:max-lg text-center p-5 h-full">
           <!-- Logo e Título -->
           <h3 class="w-38 mb-5 text-left ml text-violet-900 font-bold">EstudAI</h3>
           <div class="text-left font-semibold mb-5">
@@ -15,7 +15,7 @@
           <img src="../../assets/img/1.png" alt="Ilustração do Python" class="w-full h-auto" />
   
           <!-- Lista de Tópicos -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="grid grid-cols-1 gap-4">
             <TopicCard 
               v-for="topic in topics" 
               :key="topic.id" 
