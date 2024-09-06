@@ -4,7 +4,7 @@
       <ion-content class="flex flex-col items-center p-4 bg-gray-100">
         <div class="w-full max-w-md text-center p-5 h-full">
           <!-- Logo e Título -->
-          <h3 class="text-3xl mb-5 text-violet-900 font-bold">EstudAI</h3>
+          <h3 class="w-38 mb-5 text-left ml text-violet-900 font-bold">EstudAI</h3>
           <div class="text-left font-semibold mb-5">
             <h1 class="text-2xl">Curso: {{ courseName }}</h1>
             <h2 class="text-xl text-gray-700">Explorar Tópicos</h2>
