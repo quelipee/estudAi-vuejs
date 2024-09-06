@@ -12,6 +12,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/guest/signIn.vue')
   },
   {
+    path: '/course',
+    component: () => import('@/views/auth/CourseDetail.vue')
+  },
+  {
+    path: '/topic',
+    component: () => import('@/views/auth/TopicDetail.vue')
+  },
+  {
     path: '/tabs/',
     component: TabsPage,
     children: [

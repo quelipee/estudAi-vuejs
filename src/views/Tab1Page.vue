@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <ion-page>
     <ion-header>
       <ion-toolbar>
@@ -15,9 +15,35 @@
       <ExploreContainer name="Tab 1 page" />
     </ion-content>
   </ion-page>
+</template>-->
+<template>
+  <IonPage>
+    <IonContent class="bg-gray-100">
+
+      <!-- Header -->
+      <HeaderComponent/>
+
+      <!-- Banner -->
+      <BannerComponent/> 
+
+      <!-- Search Bar -->
+       <SearchComponent/>
+
+      <!-- Filter Tabs -->
+       <Filtercomponent/>
+
+      <!-- Course Cards -->
+       <CourseComponent/>
+
+    </IonContent>
+  </IonPage>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+import { 
+  BannerComponent, HeaderComponent, SearchComponent, 
+  Filtercomponent, CourseComponent,
+  IonContent, IonPage, IonIcon, IonInput
+ } from '@/../src/estudAI/components';
+
 </script>
