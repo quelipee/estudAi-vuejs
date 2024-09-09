@@ -12,7 +12,7 @@
 import { defineEmits, defineProps } from 'vue';
 
 // Definindo as propriedades e eventos
-const props = defineProps<{
+defineProps<{
   title: string;
 }>();
 

@@ -1,24 +1,70 @@
 import BannerComponent from '@/components/homePage.vue/BannerComponent.vue';
 import HeaderComponent from '@/components/homePage.vue/HeaderComponent.vue';
 import SearchComponent from '@/components/homePage.vue/SearchComponent.vue';
-import Filtercomponent from '@/components/homePage.vue/Filtercomponent.vue';
+import FilterComponent from '@/components/homePage.vue/FilterComponent.vue';
 import CourseComponent from '@/components/homePage.vue/CourseComponent.vue';
-import { IonContent, IonPage, IonInput, IonIcon, IonSpinner } from '@ionic/vue';
-import { menuOutline as menuIcon, bookOutline as bookIcon, 
-    settingsOutline as settingsIcon } from 'ionicons/icons';
+import TitleComponent from '@/components/coursePage.vue/TitleComponent.vue'
+import TopicsComponent from "@/components/coursePage.vue/TopicsComponent.vue";
+import CourseListComponent from '@/components/coursePage.vue/CourseListComponent.vue';
+import TitleTopicComponent from "@/components/topicPage.vue/TitleTopicComponent.vue";
+import ContentComponent from "@/components/topicPage.vue/ContentComponent.vue";
+import OptionsComponent from "@/components/topicPage.vue/OptionsComponent.vue";
+import SubTitleComponent from "@/components/signInPage.vue/SubTitleComponent.vue";
+import FormComponent from "@/components/signInPage.vue/FormComponent.vue";
+import SignInButton from "@/components/signInPage.vue/SignInButton.vue";
+import LabelSignUp from '@/components/signInPage.vue/LabelSignUp.vue';
+import AvatarImgComponent from "@/components/homePage.vue/Profile/AvatarImgComponent.vue";
+import TabsSectionComponent from "@/components/homePage.vue/Profile/TabsSectionComponent.vue";
+import AboutComponent from "@/components/homePage.vue/Profile/AboutComponent.vue";
+import ActivityComponent from "@/components/homePage.vue/Profile/ActivityComponent.vue";
+import EditProfileComponent from "@/components/homePage.vue/Profile/EditProfileComponent.vue";
+import SubTitleSignUpComponent from "@/components/signUpPage.vue/SubTitleSignUpComponent.vue";
+import FormRegisterComponent from "@/components/signUpPage.vue/FormRegisterComponent.vue";
+import { IonContent, IonPage, IonInput, IonIcon, IonSpinner, IonHeader,IonToolbar,
+    IonTitle, IonImg, IonLabel, IonButton, IonItem, IonCheckbox, IonSelect, IonSelectOption } from '@ionic/vue';
+import { menuOutline as menuIcon, bookOutline as bookIcon,
+    settingsOutline as settingsIcon, eyeOffOutline } from "ionicons/icons";
 
 export {
     BannerComponent,
+    EditProfileComponent,
+    ActivityComponent,
+    AboutComponent,
+    FormRegisterComponent,
+    SubTitleSignUpComponent,
+    LabelSignUp,
+    AvatarImgComponent,
+    TabsSectionComponent,
+    FormComponent,
+    SignInButton,
     HeaderComponent,
     SearchComponent,
-    Filtercomponent,
+    FilterComponent,
     CourseComponent,
+    TitleComponent,
+    TopicsComponent,
+    SubTitleComponent,
+    CourseListComponent,
+    TitleTopicComponent,
+    ContentComponent,
+    OptionsComponent,
     IonContent,
     IonIcon,
+    IonSelect,
+    IonSelectOption,
+    IonButton,
     IonInput,
     IonPage,
+    eyeOffOutline,
+    IonItem,
     menuIcon,
     bookIcon,
     settingsIcon,
-    IonSpinner
+    IonCheckbox,
+    IonSpinner,
+    IonHeader,
+    IonToolbar, 
+    IonTitle,
+    IonImg,
+    IonLabel
 }

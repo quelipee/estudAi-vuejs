@@ -1,11 +1,10 @@
 <template>
-    <div>
-        <div class="flex items-center justify-center mx-4 mt-6 space-x-2">
-        <IonInput placeholder="Subject, Class, etc..." class="bg-white rounded-full px-4 w-full border border-gray-300" />
-        <IonIcon :icon="settingsIcon" class="text-purple-500 w-6 h-6" />
-      </div>
-    </div>
+  <div class="flex items-center justify-center space-x-2">
+        <ion-input placeholder="Subject, Class, etc..."
+                  class="text-gray-600 text-sm"
+                   label="Search" label-placement="floating" fill="outline"/>
+  </div>
 </template>
 <script setup lang="ts">
-import { IonIcon, IonInput, settingsIcon  } from '@/estudAI/components';
+import { IonInput } from '@/estudAI/components';
 </script>

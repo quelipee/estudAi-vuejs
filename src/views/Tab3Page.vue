@@ -1,23 +1,20 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Tab 3</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 3</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <ExploreContainer name="Tab 3 page" />
+  <ion-page>   
+    <ion-content>
+      <div class="container mx-auto px-4 space-y-5">
+        <HeaderComponent/>
+        <AvatarImgComponent/>
+        <TabsSectionComponent/>
+        <AboutComponent/>
+        <ActivityComponent/>
+        <EditProfileComponent/>
+      </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+import { IonPage, IonContent, HeaderComponent, AvatarImgComponent,
+  TabsSectionComponent, AboutComponent, ActivityComponent, EditProfileComponent }
+  from '@/estudAI/components';
 </script>
