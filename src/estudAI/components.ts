@@ -20,15 +20,25 @@ import ActivityComponent from "@/components/homePage.vue/Profile/ActivityCompone
 import EditProfileComponent from "@/components/homePage.vue/Profile/EditProfileComponent.vue";
 import SubTitleSignUpComponent from "@/components/signUpPage.vue/SubTitleSignUpComponent.vue";
 import FormRegisterComponent from "@/components/signUpPage.vue/FormRegisterComponent.vue";
+import SearchBarComponent from "@/components/bookPage.vue/SearchBarComponent.vue";
+import BookListComponent from "@/components/bookPage.vue/BookListComponent.vue";
+import { useCourseStore } from "@/stores/BookStore";
+import { useRouter } from "vue-router";
+import { onMounted } from "vue";
 import { IonContent, IonPage, IonInput, IonIcon, IonSpinner, IonHeader,IonToolbar,
     IonTitle, IonImg, IonLabel, IonButton, IonItem, IonCheckbox, IonSelect, IonSelectOption } from '@ionic/vue';
 import { menuOutline as menuIcon, bookOutline as bookIcon,
-    settingsOutline as settingsIcon, eyeOffOutline } from "ionicons/icons";
+    settingsOutline as settingsIcon, eyeOffOutline, searchOutline } from "ionicons/icons";
 
 export {
+    useCourseStore,
+    onMounted,
+    useRouter,
     BannerComponent,
+    SearchBarComponent,
     EditProfileComponent,
     ActivityComponent,
+    BookListComponent,
     AboutComponent,
     FormRegisterComponent,
     SubTitleSignUpComponent,
@@ -63,6 +73,7 @@ export {
     IonCheckbox,
     IonSpinner,
     IonHeader,
+    searchOutline,
     IonToolbar, 
     IonTitle,
     IonImg,

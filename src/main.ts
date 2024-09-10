@@ -22,7 +22,7 @@ import '@ionic/vue/css/text-alignment.css';
 import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
-
+import { createPinia } from "pinia";
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
@@ -38,7 +38,7 @@ import '@ionic/vue/css/display.css';
 import './theme/variables.css';
 
 const app = createApp(App)
-  .use(IonicVue)
+  .use(IonicVue).use(createPinia())
   .use(router);
 
 app.component('IonIcon', IonIcon);

@@ -21,8 +21,6 @@ import { BannerComponent, HeaderComponent, SearchComponent, FilterComponent,
 import {onMounted} from "vue";
 
 onMounted(() => {
-  console.log("Página montada");
-  // Aqui você pode disparar qualquer ação necessária para garantir que
-  // os componentes sejam carregados corretamente
+  // console.log("Página montada");
 });
 </script>

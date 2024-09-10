@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps } from 'vue';
+import { defineProps } from 'vue';
 
 // Definindo as propriedades e eventos
 defineProps<{
