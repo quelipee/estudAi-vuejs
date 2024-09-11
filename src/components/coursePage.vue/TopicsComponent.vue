@@ -26,8 +26,11 @@ onMounted(async () => {
   await topics.catchCourseTopics(route.params.id);
 });
 
-watch(() => topics.topics, () => {
-  titleTopics.value = topics.showTitleTopics;
+watch(() => topics.topics, (value, oldValue) => {
+  if (value !== oldValue){
+    titleTopics.value = topics.showTitleTopics;
+    topics.catchCourseTopics(route.params.id);
+  }
   // computed(() => topics.topics); // opcao 2
 });
 </script>
