@@ -18,9 +18,5 @@ import { BannerComponent, HeaderComponent, SearchComponent, FilterComponent,
   CourseComponent,
   IonContent, IonPage,
  } from '@/../src/estudAI/components';
-import {onMounted} from "vue";
 
-onMounted(() => {
-  // console.log("Página montada");
-});
 </script>

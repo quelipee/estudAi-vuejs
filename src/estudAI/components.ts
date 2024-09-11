@@ -23,14 +23,16 @@ import FormRegisterComponent from "@/components/signUpPage.vue/FormRegisterCompo
 import SearchBarComponent from "@/components/bookPage.vue/SearchBarComponent.vue";
 import BookListComponent from "@/components/bookPage.vue/BookListComponent.vue";
 import { useCourseStore } from "@/stores/BookStore";
-import { useRouter } from "vue-router";
-import { onMounted } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { onMounted, ref } from "vue";
 import { IonContent, IonPage, IonInput, IonIcon, IonSpinner, IonHeader,IonToolbar,
     IonTitle, IonImg, IonLabel, IonButton, IonItem, IonCheckbox, IonSelect, IonSelectOption } from '@ionic/vue';
 import { menuOutline as menuIcon, bookOutline as bookIcon,
     settingsOutline as settingsIcon, eyeOffOutline, searchOutline } from "ionicons/icons";
 
 export {
+    useRoute,
+    ref,
     useCourseStore,
     onMounted,
     useRouter,

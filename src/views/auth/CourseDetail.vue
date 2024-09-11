@@ -13,10 +13,23 @@
   </template>
   
   <script setup lang="ts">
-  import { HeaderComponent, TitleComponent,TopicsComponent, IonContent,IonPage }
+  import {
+    HeaderComponent, TitleComponent, TopicsComponent, IonContent, IonPage,
+    useCourseStore, onMounted, useRoute
+  }
     from "@/estudAI/components";
-  
-  const courseName = 'Python';
+  import {computed} from "vue";
+
+  const route = useRoute();
+  const course = useCourseStore();
+
+  onMounted(async () => {
+    await course.setCourse(route.params.id);
+  })
+
+  const selectedCourse = computed(() => course.selectedCourse.title);
+  const courseName = selectedCourse;
+
   </script>
   
   <style scoped>

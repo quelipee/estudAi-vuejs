@@ -9,9 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
-// Definindo as propriedades e eventos
 defineProps<{
   title: string;
 }>();

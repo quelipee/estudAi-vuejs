@@ -13,14 +13,18 @@
 <script setup lang="ts">
   import { IonImg, IonLabel, useRouter, onMounted, useCourseStore } from "@/estudAI/components";
   import {Course} from "@/types/types";
+  import {watch} from "vue";
 
   const courses = useCourseStore();
   const route = useRouter()
 
-  const signIn = (course: Course) => {
-    console.log(course.id);
+  const signIn = (course : Course) => {
+    courses.setCourse(course.id);
     route.push({
-      path: '/course',
+      name: 'course',
+      params: {
+        id: course.id,
+      }
     });
   }
 
@@ -28,5 +32,11 @@
     await courses.fetchBooks();
     console.log(courses.books);
   });
+
+  watch( () => courses.books, (oldBooks,newBooks) => {
+    if (oldBooks !== newBooks){
+      courses.fetchBooks();
+    }
+  }, { deep: true });
 
 </script>

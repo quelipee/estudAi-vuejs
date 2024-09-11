@@ -1,22 +1,35 @@
-import { defineStore } from 'pinia';
-import {getCourses} from "@/api/api";
+import {defineStore} from 'pinia';
+import {getCourse, getCourses, getCourseTopics} from "@/api/api";
+import {Course} from "@/types/types";
 
 export const useCourseStore = defineStore('book',{
     // state -> propriedades reativas
     state: () => ({
-        count: 0,
         books: [] as Array<any>,
+        topics: [] as Array<any>,
+        selectedCourse : {} as Course,
     }),
     // actions -> metodos
     actions:{
-        incrementCounter(): void{
-            this.count++
+        async setCourse(course: number | string | string[]) {
+            try {
+                this.selectedCourse = await getCourse(course);
+            } catch (err) {
+                console.error('Error setting course');
+            }
         },
-        async fetchBooks() {
+        async fetchBooks() : Promise<void> {
             try {
                 const data = await getCourses();
                 this.books = data.courses;
             } catch (err) {
+                console.error('Error getting books:', err);
+            }
+        },
+        async catchCourseTopics(id : string | string[]) : Promise<void>  {
+            try {
+                this.topics = await getCourseTopics(id);
+            }catch (err){
                 console.error('Error getting books:', err);
             }
         }
