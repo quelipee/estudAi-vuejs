@@ -11,9 +11,9 @@
 
 </template>
 <script setup lang="ts">
-  import { IonImg, IonLabel, useRouter, onMounted, useCourseStore } from "@/estudAI/components";
+  import { IonImg, IonLabel, useRouter, onMounted, useCourseStore, watch }
+    from "@/estudAI/components";
   import {Course} from "@/types/types";
-  import {watch} from "vue";
 
   const courses = useCourseStore();
   const route = useRouter()

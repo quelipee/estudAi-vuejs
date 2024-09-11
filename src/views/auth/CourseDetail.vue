@@ -15,20 +15,23 @@
   <script setup lang="ts">
   import {
     HeaderComponent, TitleComponent, TopicsComponent, IonContent, IonPage,
-    useCourseStore, onMounted, useRoute
+    useCourseStore, onMounted, useRoute, watch
   }
     from "@/estudAI/components";
-  import {computed} from "vue";
 
   const route = useRoute();
   const course = useCourseStore();
+
+  const selectedCourse = course.selectedCourse.title;
+  let courseName = selectedCourse;
 
   onMounted(async () => {
     await course.setCourse(route.params.id);
   })
 
-  const selectedCourse = computed(() => course.selectedCourse.title);
-  const courseName = selectedCourse;
+  watch(() => course.selectedCourse.title,() => {
+    courseName = course.showTitleCourse;
+  });
 
   </script>
   

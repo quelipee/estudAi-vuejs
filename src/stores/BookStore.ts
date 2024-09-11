@@ -36,8 +36,14 @@ export const useCourseStore = defineStore('book',{
     },
     // getters -> propriedades computadas
     getters:{
-        showCount(): string{
-            return 'O valor do count é: ' +this.count
-        }
+        showTitleCourse() : any {
+            return this.selectedCourse.title;
+        },
+        showTitleTopics() : any {
+            return this.topics;
+        },
+        // showCount(): string{
+        //     return 'O valor do count é: ' +this.count
+        // }
     }
 });

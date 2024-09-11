@@ -9,6 +9,6 @@
 </template>
 <script setup lang="ts">
   defineProps<{
-    courseName: string;
+    courseName?: string;
   }>();
 </script>
