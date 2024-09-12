@@ -15,19 +15,18 @@
   <script setup lang="ts">
   import {
     HeaderComponent, TitleComponent, TopicsComponent, IonContent, IonPage,
-    useCourseStore, onMounted, useRoute , computed }
+    useCourseStore, computed, onMounted, useRoute
+  }
     from "@/estudAI/components";
-
   const route = useRoute();
   const course = useCourseStore();
 
+  const courseName = computed(() =>
+      course.selectedCourse.title);
+
   onMounted(async () => {
-    await course.setCourse(route.params.id);
-  })
-
-  const selectedCourse = computed(() => course.selectedCourse.title);
-  const courseName = selectedCourse;
-
+    await course.setCourse(route.params.id)
+  });
   </script>
   
   <style scoped>

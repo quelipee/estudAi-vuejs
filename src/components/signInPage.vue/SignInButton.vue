@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ion-button color="tertiary" expand="block">Entrar</ion-button>
+    <ion-button type="submit" color="tertiary" expand="block">Entrar</ion-button>
   </div>
 </template>
 <script setup lang="ts">

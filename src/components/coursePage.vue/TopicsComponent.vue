@@ -1,28 +1,39 @@
 <template>
   <div class="grid grid-cols-1 gap-4">
     <CourseListComponent
+        :loading
         v-for="topic in titleTopics"
+        @click="chatOpen(topic)"
         :key="topic.id"
         :title="topic.title"
-        @select="handleSelectTopic(topic.id)"
     />
   </div>
 </template>
 <script setup lang='ts'>
-import {CourseListComponent, onMounted, useCourseStore, ref } from "@/estudAI/components";
-import {useRoute} from "vue-router";
-import {watch} from "vue";
+import {CourseListComponent, onMounted, useCourseStore, ref, watch, useRoute, useRouter}
+  from "@/estudAI/components";
+import {Topic} from "@/types/types";
+
 const topics = useCourseStore();
-
 const route = useRoute();
+const loading = ref(true);
+const titleTopics = ref<any[]>([]);
+const router = useRouter();
 
-const handleSelectTopic = (topicId: number) => {
-  console.log('Tópico selecionado:', topicId);
-};
-
-const titleTopics = ref<string[]>([]);
+const chatOpen = (topic: Topic) => {
+  console.log(topic);
+  router.push({
+    name: 'topic',
+    params: {
+      id : topic.id,
+    }
+  });
+}
 
 onMounted(async () => {
+  setTimeout(() => {
+    loading.value = false;
+  }, 1500);
   await topics.catchCourseTopics(route.params.id);
 });
 

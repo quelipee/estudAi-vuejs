@@ -2,12 +2,12 @@
   <ion-page>
     <ion-content>
       <div class="container mx-auto px-4 space-y-5">
-        <HeaderComponent/>
-        <SubTitleComponent/>
-        <img src="../../assets/img/1.png" alt="Ilustração" class="w-full h-auto mb-5" />
-        <FormComponent/>
-        <SignInButton/>
-        <LabelSignUp/>
+          <HeaderComponent/>
+          <SubTitleComponent/>
+          <img src="../../assets/img/1.png" alt="Ilustração" class="w-full h-auto mb-5" />
+          <FormComponent/>
+          <SignInButton/>
+          <LabelSignUp/>
       </div>
     </ion-content>
   </ion-page>

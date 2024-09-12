@@ -1,17 +1,27 @@
 import {defineStore} from 'pinia';
-import {getCourse, getCourses, getCourseTopics} from "@/api/api";
-import {Course} from "@/types/types";
+import {fetchTopic, getCourse, getCourses, getCourseTopics, getUser, openChatForTopic} from "@/api/api";
+import {Course, Topic} from "@/types/types";
 
 export const useCourseStore = defineStore('book',{
     // state -> propriedades reativas
     state: () => ({
         books: [] as Array<any>,
-        topics: [] as Array<any>,
+        topics: [] as Array<Topic>,
         selectedCourse : {} as Course,
+        chat : [] as Array<any>,
+        user: {} as Array<any>,
+        topic : {} as Topic,
     }),
     // actions -> metodos
     actions:{
-        async setCourse(course: number | string | string[]) {
+        async fetchUser() {
+          try {
+              this.user = await getUser();
+          }catch (error){
+              console.log(error);
+          }
+        },
+        async setCourse(course: number | string | string[]) : Promise<void> {
             try {
                 this.selectedCourse = await getCourse(course);
             } catch (err) {
@@ -32,6 +42,21 @@ export const useCourseStore = defineStore('book',{
             }catch (err){
                 console.error('Error getting books:', err);
             }
+        },
+        async fetchTopic(courseId : number) : Promise<void> {
+          try {
+              this.topic = await fetchTopic(courseId);
+          }catch (err){
+              console.error('Error getting topic');
+          }
+        },
+        async openChat(topic_id : number, course_id : number) : Promise<void>  {
+            try {
+                this.chat = await openChatForTopic(topic_id, course_id);
+                console.log(this.chat);
+            }catch (err){
+                console.error('Error opening chat');
+            }
         }
     },
     // getters -> propriedades computadas
@@ -42,8 +67,8 @@ export const useCourseStore = defineStore('book',{
         showTitleTopics() : any {
             return this.topics;
         },
-        // showCount(): string{
-        //     return 'O valor do count é: ' +this.count
-        // }
+        showTitleTopic() : any {
+            return this.topic.title
+        }
     }
 });

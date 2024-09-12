@@ -22,6 +22,7 @@ import SubTitleSignUpComponent from "@/components/signUpPage.vue/SubTitleSignUpC
 import FormRegisterComponent from "@/components/signUpPage.vue/FormRegisterComponent.vue";
 import SearchBarComponent from "@/components/bookPage.vue/SearchBarComponent.vue";
 import BookListComponent from "@/components/bookPage.vue/BookListComponent.vue";
+import {getToken, signInUserAuthenticated} from "@/api/api";
 import { useCourseStore } from "@/stores/BookStore";
 import { useRouter, useRoute } from "vue-router";
 import { onMounted, ref, watch, computed } from "vue";
@@ -38,6 +39,8 @@ export {
     useCourseStore,
     onMounted,
     useRouter,
+    signInUserAuthenticated,
+    getToken,
     BannerComponent,
     SearchBarComponent,
     EditProfileComponent,

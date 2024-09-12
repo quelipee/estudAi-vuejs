@@ -20,6 +20,7 @@
 
   const signIn = (course : Course) => {
     courses.setCourse(course.id);
+    courses.catchCourseTopics(course.id.toString());
     route.push({
       name: 'course',
       params: {
@@ -34,9 +35,9 @@
   });
 
   watch( () => courses.books, (oldBooks,newBooks) => {
-    if (oldBooks !== newBooks){
-      courses.fetchBooks();
-    }
+    // if (oldBooks !== newBooks){
+    //   courses.fetchBooks();
+    // }
   }, { deep: true });
 
 </script>
