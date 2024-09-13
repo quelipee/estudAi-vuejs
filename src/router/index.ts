@@ -64,14 +64,14 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/tabs/',
     component: TabsPage,
-    beforeEnter: (to, from, next) => {
-      // const auth = useCourseStore();
-      if (!localStorage.getItem('token')){
-        next('/login');
-      }else {
-        next();
-      }
-    },
+    // beforeEnter: (to, from, next) => {
+    //   // const auth = useCourseStore();
+    //   if (!localStorage.getItem('token')){
+    //     next('/login');
+    //   }else {
+    //     next();
+    //   }
+    // },
     children: [
       {
         path: '',

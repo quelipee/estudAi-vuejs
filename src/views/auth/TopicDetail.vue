@@ -28,15 +28,14 @@
     HeaderComponent,
     TitleTopicComponent,
     OptionsComponent,
-    useRoute, watch
+    useRoute
   }
     from '@/estudAI/components';
-  import {Topic} from "@/types/types";
 
   const route = useRoute();
   const chat = useCourseStore();
 
-  const content = ref('dasdsa');
+  const content = ref('dasdsa123');
 
   const loading = ref(true);
 

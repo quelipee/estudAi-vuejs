@@ -40,7 +40,13 @@ export const signInUserAuthenticated = async (email: string, password: string) =
 
 export const getUser = async () => {
   try {
-      const res = await apiAuth.get("app/profile");
+      const res = await api.get("app/profile",{
+          headers:{
+              "Authorization": `Bearer ${localStorage.getItem("token")}`
+          },
+          withCredentials:true
+      });
+      console.log(res.data);
       return res.data;
   }catch (error){
       console.log(error);
@@ -86,7 +92,12 @@ export const getCourse = async (course : number | string | string[]) => {
 export const openChatForTopic = async (topic : number, course: number) => {
     try {
         const res =
-            await apiAuth.get("app/chat/" + course + '/topic/' + topic + '/message');
+            await api.get("app/chat/" + course + '/topic/' + topic + '/message',{
+                headers : {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                withCredentials: true
+            });
         console.log(res);
         return res.data;
     }catch (err){
