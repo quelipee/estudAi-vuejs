@@ -6,7 +6,7 @@
 
     <div v-else v-html="content"
          class="prose prose-sm text-left mb-6 block max-w-sm p-6
-          bg-white shadow">
+          bg-white shadow text-sm text-gray-700">
     </div>
   </div>
 </template>

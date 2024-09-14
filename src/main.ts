@@ -23,6 +23,7 @@ import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 import { createPinia } from "pinia";
+import echo from './echo';
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
@@ -47,6 +48,7 @@ app.config.globalProperties.$icons = {
   eyeOffOutline
 };
 
+app.config.globalProperties.$echo = echo;
 router.isReady().then(() => {
   app.mount('#app');
 });

@@ -63,11 +63,10 @@ export const getToken = async () => {
 export const getCourses = async() => {
     try {
         const res = await api.get("courses");
-        console.log(res.data);
         return res.data;
     }catch(err) {
         console.log('Error getting courses');
-        throw err;
+        // throw err;
     }
 };
 
@@ -88,6 +87,14 @@ export const getCourse = async (course : number | string | string[]) => {
         console.error('Error getting course');
     }
 };
+export const getTopic = async (id : number) => {
+    try {
+        const res = await api.get('findTopic/' + id);
+        return res.data;
+    }catch (err){
+        console.log(err);
+    }
+};
 
 export const openChatForTopic = async (topic : number, course: number) => {
     try {
@@ -98,20 +105,9 @@ export const openChatForTopic = async (topic : number, course: number) => {
                 },
                 withCredentials: true
             });
-        console.log(res);
+        // console.log(res);
         return res.data;
     }catch (err){
         console.log('error open chat')
     }
 };
-
-export const fetchTopic = async (topic : number) => {
-    try {
-        const res = await api.post("fetchTopic",{
-            id: topic
-        });
-        return res.data.topic;
-    }catch (error){
-        console.log(error);
-    }
-}

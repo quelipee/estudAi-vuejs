@@ -25,7 +25,7 @@
       course.selectedCourse.title);
 
   onMounted(async () => {
-    await course.setCourse(route.params.id)
+    await course.setCourse(route.params.id);
   });
   </script>
   

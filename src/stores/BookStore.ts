@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia';
-import {fetchTopic, getCourse, getCourses, getCourseTopics, getUser, openChatForTopic} from "@/api/api";
-import {Course, Topic} from "@/types/types";
+import { getCourse, getCourses, getCourseTopics, getTopic, getUser, openChatForTopic} from "@/api/api";
+import {Chat, Course, Topic} from "@/types/types";
 
 export const useCourseStore = defineStore('book',{
     // state -> propriedades reativas
@@ -8,7 +8,8 @@ export const useCourseStore = defineStore('book',{
         books: [] as Array<any>,
         topics: [] as Array<Topic>,
         selectedCourse : {} as Course,
-        chat : [] as Array<any>,
+        selectedTopic : {} as Topic,
+        chat : {} as Chat,
         user: {} as Array<any>,
         topic : {} as Topic,
     }),
@@ -36,6 +37,9 @@ export const useCourseStore = defineStore('book',{
                 console.error('Error getting books:', err);
             }
         },
+        async updateBooks(courses: Course[]) {
+            this.books = courses;
+        },
         async catchCourseTopics(id : string | string[]) : Promise<void>  {
             try {
                 this.topics = await getCourseTopics(id);
@@ -43,17 +47,19 @@ export const useCourseStore = defineStore('book',{
                 console.error('Error getting books:', err);
             }
         },
-        async fetchTopic(courseId : number) : Promise<void> {
+        async setTopic(id : number){
           try {
-              this.topic = await fetchTopic(courseId);
+              this.selectedTopic = await getTopic(id);
           }catch (err){
-              console.error('Error getting topic');
+              console.log(err);
           }
+        },
+        async updateTopics(topics: Topic[]) {
+            this.topics = topics;
         },
         async openChat(topic_id : number, course_id : number) : Promise<void>  {
             try {
                 this.chat = await openChatForTopic(topic_id, course_id);
-                console.log(this.chat);
             }catch (err){
                 console.error('Error opening chat');
             }

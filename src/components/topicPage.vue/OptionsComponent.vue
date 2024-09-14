@@ -1,23 +1,20 @@
 <template>
   <div>
-    <div class="flex flex-col space-y-4 mb-9">
+    <div class="flex flex-row items-center space-x-1 justify-between mb-5">
       <div @click="handleAction('exercises')"
            class="cursor-pointer p-3 bg-blue-200 text-blue-800 rounded-md
-           shadow-sm hover:bg-blue-300 transition-colors">
-        <h3 class="text-lg font-medium">Exercícios</h3>
-        <p class="text-sm">Pratique o que aprendeu.</p>
+           shadow-sm hover:bg-blue-300 transition-colors w-1/2 text-center">
+        <h3 class="text-sm font-medium">Exercícios</h3>
       </div>
       <div @click="handleAction('explanation')"
            class="cursor-pointer p-3 bg-green-200 text-green-800 rounded-md
-           shadow-sm hover:bg-green-300 transition-colors">
-        <h3 class="text-lg font-medium">Explicação</h3>
-        <p class="text-sm">Veja uma explicação detalhada.</p>
+           shadow-sm hover:bg-green-300 transition-colors w-1/2 text-center">
+        <h3 class="text-sm font-medium">Explicação</h3>
       </div>
       <div @click="handleAction('continue')"
            class="cursor-pointer p-3 bg-gray-200 text-gray-800 rounded-md
-           shadow-sm hover:bg-gray-300 transition-colors">
-        <h3 class="text-lg font-medium">Continuar</h3>
-        <p class="text-sm">Prossiga para a próxima seção.</p>
+           shadow-sm hover:bg-gray-300 transition-colors w-1/2 text-center">
+        <h3 class="text-sm font-medium">Continuar</h3>
       </div>
     </div>
   </div>

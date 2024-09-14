@@ -11,16 +11,16 @@
 
 </template>
 <script setup lang="ts">
-  import { IonImg, IonLabel, useRouter, onMounted, useCourseStore, watch }
+  import { IonImg, IonLabel, useRouter, onMounted, useCourseStore }
     from "@/estudAI/components";
   import {Course} from "@/types/types";
+  import echo from "@/echo";
 
   const courses = useCourseStore();
   const route = useRouter()
 
   const signIn = (course : Course) => {
     courses.setCourse(course.id);
-    courses.catchCourseTopics(course.id.toString());
     route.push({
       name: 'course',
       params: {
@@ -31,13 +31,9 @@
 
   onMounted(async () =>{
     await courses.fetchBooks();
-    console.log(courses.books);
+    echo.channel('courses').listen('.CoursesEvent', function (event: any) {
+      courses.updateBooks(event);
+    });
   });
-
-  watch( () => courses.books, (oldBooks,newBooks) => {
-    // if (oldBooks !== newBooks){
-    //   courses.fetchBooks();
-    // }
-  }, { deep: true });
 
 </script>

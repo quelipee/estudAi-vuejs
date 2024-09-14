@@ -3,11 +3,9 @@
       <ion-content class="flex flex-col items-center h-full bg-gray-100 p-4">
         <div class="container mx-auto px-4 space-y-5">
           <HeaderComponent/>
-          <div v-if="chat.topic && chat.topic.title && chat.topic.topic">
             <TitleTopicComponent
-                :topicTitle="chat.topic.title"
-                :subtitle="chat.topic.topic"/>
-          </div>
+                :topicTitle="chat.selectedTopic.title"
+                :subtitle="chat.selectedTopic.topic"/>
           <img src="../../assets/img/1.png" alt="Imagem do Tópico" class="w-full h-auto mb-4 rounded-md" />
           <ContentComponent
               :loading
@@ -19,7 +17,7 @@
   </template>
 
   <script lang="ts" setup>
-  import { ref, onMounted } from 'vue';
+  import {ref, onMounted, computed} from 'vue';
   import {
     IonContent,
     IonPage,
@@ -31,21 +29,23 @@
     useRoute
   }
     from '@/estudAI/components';
-
+  //TODO ADJUSTS THIS PART
   const route = useRoute();
   const chat = useCourseStore();
-
-  const content = ref('dasdsa123');
-
   const loading = ref(true);
+  const content = chat.chat.message;
+
+  // const formattedContent = computed(() => {
+  //   return content.value.replace(/\n/g, '<br>');
+  // });
 
   onMounted(async () => {
     setTimeout(() => {
       loading.value = false;
     }, 500);
-    //TODO VOLTAR AQUI DEPOIS
-    await chat.fetchTopic(Number(route.params.id));
-    await chat.openChat(1,1);
+    await chat.setTopic(Number(route.params.id));
+    await chat.openChat(chat.selectedTopic.id,chat.selectedTopic.course_id);
+    console.log(chat.chat);
   });
 
   </script>

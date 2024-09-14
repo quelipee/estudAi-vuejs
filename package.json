@@ -21,7 +21,9 @@
     "@ionic/vue-router": "^8.0.0",
     "axios": "^1.7.7",
     "ionicons": "^7.0.0",
+    "laravel-echo": "^1.16.1",
     "pinia": "^2.2.2",
+    "pusher-js": "^8.4.0-rc2",
     "vue": "^3.3.0",
     "vue-router": "^4.4.3"
   },

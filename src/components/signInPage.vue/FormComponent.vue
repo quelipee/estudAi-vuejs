@@ -34,6 +34,7 @@ import {
   from '@/estudAI/components';
 import { eyeOffOutline } from 'ionicons/icons';
 import {User} from "@/types/types";
+import echo from "@/echo";
 
 const auth = useCourseStore();
 const route = useRouter();
