@@ -24,4 +24,8 @@ export interface User {
 
 export interface Chat {
     message: string;
+    created_at: string;
+    id: string;
+    role: string;
+    updated_at: string;
 }

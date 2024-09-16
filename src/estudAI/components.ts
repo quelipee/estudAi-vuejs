@@ -14,7 +14,6 @@ import FormComponent from "@/components/signInPage.vue/FormComponent.vue";
 import SignInButton from "@/components/signInPage.vue/SignInButton.vue";
 import LabelSignUp from '@/components/signInPage.vue/LabelSignUp.vue';
 import AvatarImgComponent from "@/components/homePage.vue/Profile/AvatarImgComponent.vue";
-import TabsSectionComponent from "@/components/homePage.vue/Profile/TabsSectionComponent.vue";
 import AboutComponent from "@/components/homePage.vue/Profile/AboutComponent.vue";
 import ActivityComponent from "@/components/homePage.vue/Profile/ActivityComponent.vue";
 import EditProfileComponent from "@/components/homePage.vue/Profile/EditProfileComponent.vue";
@@ -22,6 +21,7 @@ import SubTitleSignUpComponent from "@/components/signUpPage.vue/SubTitleSignUpC
 import FormRegisterComponent from "@/components/signUpPage.vue/FormRegisterComponent.vue";
 import SearchBarComponent from "@/components/bookPage.vue/SearchBarComponent.vue";
 import BookListComponent from "@/components/bookPage.vue/BookListComponent.vue";
+import { marked } from "marked";
 import {getToken, signInUserAuthenticated} from "@/api/api";
 import { useCourseStore } from "@/stores/BookStore";
 import { useRouter, useRoute } from "vue-router";
@@ -32,6 +32,7 @@ import { menuOutline as menuIcon, bookOutline as bookIcon,
     settingsOutline as settingsIcon, eyeOffOutline, searchOutline } from "ionicons/icons";
 
 export {
+    marked,
     useRoute,
     computed,
     watch,
@@ -51,7 +52,6 @@ export {
     SubTitleSignUpComponent,
     LabelSignUp,
     AvatarImgComponent,
-    TabsSectionComponent,
     FormComponent,
     SignInButton,
     HeaderComponent,

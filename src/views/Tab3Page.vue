@@ -4,7 +4,6 @@
       <div class="container mx-auto px-4 space-y-5">
         <HeaderComponent/>
         <AvatarImgComponent/>
-        <TabsSectionComponent/>
         <AboutComponent/>
         <ActivityComponent/>
         <EditProfileComponent/>
@@ -15,6 +14,6 @@
 
 <script setup lang="ts">
 import { IonPage, IonContent, HeaderComponent, AvatarImgComponent,
-  TabsSectionComponent, AboutComponent, ActivityComponent, EditProfileComponent }
+  AboutComponent, ActivityComponent, EditProfileComponent }
   from '@/estudAI/components';
 </script>

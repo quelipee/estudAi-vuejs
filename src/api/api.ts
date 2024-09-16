@@ -95,19 +95,34 @@ export const getTopic = async (id : number) => {
         console.log(err);
     }
 };
-
-export const openChatForTopic = async (topic : number, course: number) => {
+//TODO CHANGE FOR POST
+export const openChatForTopic = async (course : number, topic: number, action : string) => {
     try {
         const res =
-            await api.get("app/chat/" + course + '/topic/' + topic + '/message',{
+            await api.post("app/chat/" + course + '/topic/' + topic + '/message',{ action },
+                {
                 headers : {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`
                 },
                 withCredentials: true
             });
-        // console.log(res);
+        console.log(res.data);
         return res.data;
     }catch (err){
         console.log('error open chat')
     }
 };
+//TODO CHANGE FOR POST
+export const fetchMessageChat = async (topicId : number) => {
+    try {
+        const res = await api.get("app/messageChat/" + topicId,{
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            withCredentials : true
+        });
+        return res.data.message_history;
+    }catch (err){
+        console.log('Error fetching messageChat', err);
+    }
+}

@@ -14,18 +14,21 @@ import {CourseListComponent, onMounted, useCourseStore, ref, useRoute, useRouter
   from "@/estudAI/components";
 import {Topic} from "@/types/types";
 import echo from "@/echo";
+import {fetchMessageChat} from "@/api/api";
 
 const topics = useCourseStore();
 const route = useRoute();
 const loading = ref(true);
 const router = useRouter();
 
-const chatOpen = (topic: Topic) => {
-  topics.setTopic(topic.id);
-  router.push({
+const chatOpen = async (topic: Topic) => {
+  await topics.setTopic(topic.id);
+  await fetchMessageChat(topic.id);
+  // await topics.openChat(topic.course_id, topic.id)
+  await router.push({
     name: 'topic',
     params: {
-      id : topic.id,
+      id: topic.id,
     }
   });
 }

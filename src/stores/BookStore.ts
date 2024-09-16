@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia';
-import { getCourse, getCourses, getCourseTopics, getTopic, getUser, openChatForTopic} from "@/api/api";
+import {fetchMessageChat, getCourse, getCourses, getCourseTopics, getTopic, getUser, openChatForTopic} from "@/api/api";
 import {Chat, Course, Topic} from "@/types/types";
 
 export const useCourseStore = defineStore('book',{
@@ -9,7 +9,7 @@ export const useCourseStore = defineStore('book',{
         topics: [] as Array<Topic>,
         selectedCourse : {} as Course,
         selectedTopic : {} as Topic,
-        chat : {} as Chat,
+        chat :{} as Array<Chat>,
         user: {} as Array<any>,
         topic : {} as Topic,
     }),
@@ -57,11 +57,18 @@ export const useCourseStore = defineStore('book',{
         async updateTopics(topics: Topic[]) {
             this.topics = topics;
         },
-        async openChat(topic_id : number, course_id : number) : Promise<void>  {
+        async openChat(course_id : number, topic_id : number, action : string) : Promise<void>  {
             try {
-                this.chat = await openChatForTopic(topic_id, course_id);
+                this.chat = await openChatForTopic(course_id, topic_id, action);
             }catch (err){
                 console.error('Error opening chat');
+            }
+        },
+        async fetchMessageForAPI(topic_id : number) {
+            try {
+                this.chat = await fetchMessageChat(topic_id);
+            }catch (err){
+                console.log(err);
             }
         }
     },
@@ -75,6 +82,9 @@ export const useCourseStore = defineStore('book',{
         },
         showTitleTopic() : any {
             return this.topic.title
-        }
+        },
+        showMessage() : any {
+            return this.chat
+        },
     }
 });
