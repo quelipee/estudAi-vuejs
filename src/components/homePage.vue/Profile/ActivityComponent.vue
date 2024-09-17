@@ -1,10 +1,26 @@
 <template>
-  <div class="bg-purple-50 p-4 rounded-lg shadow-md mb-6">
-    <h3 class="text-lg font-semibold text-gray-800 mb-2">Últimas Atividades</h3>
-    <ul class="list-disc pl-5 text-gray-600 text-sm">
-      <li>Participou de um grupo</li>
-      <li>Completou um curso</li>
-      <li>Comentou em uma postagem</li>
-    </ul>
+  <div class="mt-6 bg-white rounded-lg shadow p-4">
+    <p class="text-sm text-gray-400 mb-3">Information</p>
+    <ion-item lines="none" button>
+      <ion-icon :icon="informationCircleOutline" slot="start"></ion-icon>
+      <ion-label>About App</ion-label>
+    </ion-item>
+    <ion-item lines="none" button>
+      <ion-icon :icon="documentTextOutline" slot="start"></ion-icon>
+      <ion-label>Terms & Conditions</ion-label>
+    </ion-item>
+    <ion-item lines="none" button>
+      <ion-icon :icon="lockClosedOutline" slot="start"></ion-icon>
+      <ion-label>Privacy Policy</ion-label>
+    </ion-item>
+    <ion-item lines="none" button>
+      <ion-icon :icon="shareSocialOutline" slot="start"></ion-icon>
+      <ion-label>Share This App</ion-label>
+    </ion-item>
   </div>
 </template>
+<script setup lang="ts">
+  import { shareSocialOutline, lockClosedOutline, documentTextOutline,
+    informationCircleOutline, IonItem, IonLabel }
+    from '@/estudAI/components';
+</script>

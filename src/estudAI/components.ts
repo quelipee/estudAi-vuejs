@@ -14,7 +14,7 @@ import FormComponent from "@/components/signInPage.vue/FormComponent.vue";
 import SignInButton from "@/components/signInPage.vue/SignInButton.vue";
 import LabelSignUp from '@/components/signInPage.vue/LabelSignUp.vue';
 import AvatarImgComponent from "@/components/homePage.vue/Profile/AvatarImgComponent.vue";
-import AboutComponent from "@/components/homePage.vue/Profile/AboutComponent.vue";
+import SettingsComponent from "@/components/homePage.vue/Profile/SettingsComponent.vue";
 import ActivityComponent from "@/components/homePage.vue/Profile/ActivityComponent.vue";
 import EditProfileComponent from "@/components/homePage.vue/Profile/EditProfileComponent.vue";
 import SubTitleSignUpComponent from "@/components/signUpPage.vue/SubTitleSignUpComponent.vue";
@@ -27,11 +27,25 @@ import { useCourseStore } from "@/stores/BookStore";
 import { useRouter, useRoute } from "vue-router";
 import { onMounted, ref, watch, computed } from "vue";
 import { IonContent, IonPage, IonInput, IonIcon, IonSpinner, IonHeader,IonToolbar,
-    IonTitle, IonImg, IonLabel, IonButton, IonItem, IonCheckbox, IonSelect, IonSelectOption } from '@ionic/vue';
+    IonTitle, IonImg, IonLabel, IonButton, IonItem, IonCheckbox, IonSelect, IonSelectOption, IonToggle } from '@ionic/vue';
 import { menuOutline as menuIcon, bookOutline as bookIcon,
-    settingsOutline as settingsIcon, eyeOffOutline, searchOutline } from "ionicons/icons";
+    settingsOutline as settingsIcon, eyeOffOutline, searchOutline, languageOutline, language, keyOutline,
+    settings, shareSocialOutline, lockClosedOutline,documentTextOutline,informationCircleOutline, createOutline,
+    create,createSharp  } from "ionicons/icons";
 
 export {
+    createSharp,
+    create,
+    createOutline,
+    informationCircleOutline,
+    documentTextOutline,
+    lockClosedOutline,
+    shareSocialOutline,
+    settings,
+    keyOutline,
+    language,
+    languageOutline,
+    IonToggle,
     marked,
     useRoute,
     computed,
@@ -47,7 +61,7 @@ export {
     EditProfileComponent,
     ActivityComponent,
     BookListComponent,
-    AboutComponent,
+    SettingsComponent,
     FormRegisterComponent,
     SubTitleSignUpComponent,
     LabelSignUp,

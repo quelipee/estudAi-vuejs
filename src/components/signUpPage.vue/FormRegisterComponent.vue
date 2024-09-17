@@ -48,7 +48,7 @@
         </div>
 
         <!-- Botão de Registro -->
-        <ion-button expand="block" color="primary">
+        <ion-button expand="block" color="tertiary">
           Sign Up
         </ion-button>
       </form>

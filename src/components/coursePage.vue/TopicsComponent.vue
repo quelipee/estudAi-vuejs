@@ -24,7 +24,6 @@ const router = useRouter();
 const chatOpen = async (topic: Topic) => {
   await topics.setTopic(topic.id);
   await fetchMessageChat(topic.id);
-  // await topics.openChat(topic.course_id, topic.id)
   await router.push({
     name: 'topic',
     params: {

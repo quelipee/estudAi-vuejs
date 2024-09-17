@@ -46,8 +46,7 @@ export const getUser = async () => {
           },
           withCredentials:true
       });
-      console.log(res.data);
-      return res.data;
+      return res.data.profile;
   }catch (error){
       console.log(error);
   }
@@ -66,9 +65,22 @@ export const getCourses = async() => {
         return res.data;
     }catch(err) {
         console.log('Error getting courses');
-        // throw err;
     }
 };
+
+export const yourCourses = async() => {
+    try {
+        const res = await api.get('app/your_courses',{
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            withCredentials : true
+        });
+        return res.data.courses;
+    }catch (err){
+        console.log(err)
+    }
+}
 
 export const getCourseTopics = async (id : string | string[]) => {
     try {
@@ -95,7 +107,6 @@ export const getTopic = async (id : number) => {
         console.log(err);
     }
 };
-//TODO CHANGE FOR POST
 export const openChatForTopic = async (course : number, topic: number, action : string) => {
     try {
         const res =
@@ -112,7 +123,6 @@ export const openChatForTopic = async (course : number, topic: number, action : 
         console.log('error open chat')
     }
 };
-//TODO CHANGE FOR POST
 export const fetchMessageChat = async (topicId : number) => {
     try {
         const res = await api.get("app/messageChat/" + topicId,{
@@ -124,5 +134,20 @@ export const fetchMessageChat = async (topicId : number) => {
         return res.data.message_history;
     }catch (err){
         console.log('Error fetching messageChat', err);
+    }
+};
+
+export const joinUserForCourse = async(course : number) => {
+    try {
+        const res = await api.get('app/join-course/' + course,{
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            withCredentials : true
+        });
+        console.log(res.data);
+        return res.data;
+    }catch (err){
+        console.log(err);
     }
 }

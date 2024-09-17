@@ -1,16 +1,26 @@
 import {defineStore} from 'pinia';
-import {fetchMessageChat, getCourse, getCourses, getCourseTopics, getTopic, getUser, openChatForTopic} from "@/api/api";
-import {Chat, Course, Topic} from "@/types/types";
+import {
+    fetchMessageChat,
+    getCourse,
+    getCourses,
+    getCourseTopics,
+    getTopic,
+    getUser,
+    openChatForTopic,
+    yourCourses
+} from "@/api/api";
+import {Chat, Course, Topic, User} from "@/types/types";
 
 export const useCourseStore = defineStore('book',{
     // state -> propriedades reativas
     state: () => ({
         books: [] as Array<any>,
         topics: [] as Array<Topic>,
+        courses : [] as Array<Course>,
         selectedCourse : {} as Course,
         selectedTopic : {} as Topic,
         chat :{} as Array<Chat>,
-        user: {} as Array<any>,
+        user: {} as User,
         topic : {} as Topic,
     }),
     // actions -> metodos
@@ -29,7 +39,14 @@ export const useCourseStore = defineStore('book',{
                 console.error('Error setting course');
             }
         },
-        async fetchBooks() : Promise<void> {
+        async fetchYourCourses() {
+          try {
+              this.courses = await yourCourses();
+          }catch (error){
+              console.log(error)
+          }
+        },
+        async fetchBooks() : Promise<void> {//TODO LATER
             try {
                 const data = await getCourses();
                 this.books = data.courses;
@@ -39,6 +56,10 @@ export const useCourseStore = defineStore('book',{
         },
         async updateBooks(courses: Course[]) {
             this.books = courses;
+        },
+        async updateYourCourses(courses: Course[]) {
+            console.log(courses);
+            this.courses = courses;
         },
         async catchCourseTopics(id : string | string[]) : Promise<void>  {
             try {

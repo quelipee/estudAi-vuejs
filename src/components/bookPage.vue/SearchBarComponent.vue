@@ -5,7 +5,7 @@
         @input="$emit('update:searchQuery', $event.target.value)"
         type="text"
         class="w-full px-4 py-2 text-sm text-gray-700 bg-white border rounded-full focus:outline-none focus:border-purple-500"
-        placeholder="Buscar livros..."
+        placeholder="Buscar Cursos..."
     />
     <ion-icon
         :name="searchOutline"

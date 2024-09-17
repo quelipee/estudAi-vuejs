@@ -6,7 +6,6 @@
           <SubTitleComponent/>
           <img src="../../assets/img/1.png" alt="Ilustração" class="w-full h-auto mb-5" />
           <FormComponent/>
-          <SignInButton/>
           <LabelSignUp/>
       </div>
     </ion-content>
@@ -14,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { HeaderComponent, SubTitleComponent, FormComponent, SignInButton, LabelSignUp, IonContent, IonPage }
+import { HeaderComponent, SubTitleComponent, FormComponent, LabelSignUp, IonContent, IonPage }
   from "@/estudAI/components";
 
 </script>

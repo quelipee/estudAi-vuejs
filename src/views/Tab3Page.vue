@@ -4,9 +4,8 @@
       <div class="container mx-auto px-4 space-y-5">
         <HeaderComponent/>
         <AvatarImgComponent/>
-        <AboutComponent/>
+        <SettingsComponent/>
         <ActivityComponent/>
-        <EditProfileComponent/>
       </div>
     </ion-content>
   </ion-page>
@@ -14,6 +13,6 @@
 
 <script setup lang="ts">
 import { IonPage, IonContent, HeaderComponent, AvatarImgComponent,
-  AboutComponent, ActivityComponent, EditProfileComponent }
+  SettingsComponent, ActivityComponent, EditProfileComponent }
   from '@/estudAI/components';
 </script>
