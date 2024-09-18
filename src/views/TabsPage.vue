@@ -26,3 +26,8 @@
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
 import { personOutline as personIcon,bookOutline as bookIcon, gridOutline as gridIcon } from 'ionicons/icons';
 </script>
+<style scoped>
+ion-tab-button{
+  --color-selected:rgb(168 85 247);
+}
+</style>

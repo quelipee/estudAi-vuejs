@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import {
   IonItem, IonLabel, IonInput, IonIcon, IonCheckbox, ref,
-  SignInButton, getToken, signInUserAuthenticated, useRouter, useCourseStore
+  SignInButton, signInUserAuthenticated, useRouter, useCourseStore
 }
   from '@/estudAI/components';
 import { eyeOffOutline } from 'ionicons/icons';
@@ -38,13 +38,13 @@ import {User} from "@/types/types";
 const auth = useCourseStore();
 const route = useRouter();
 const user = ref<User>({
+  name: "",
   email: '',
-  password: '',
+  password: ''
 });
 
 const submitForm = async () => {
   try {
-    await getToken();
     await signInUserAuthenticated(user.value.email,user.value.password);
     await auth.fetchUser();
     await route.push('/');

@@ -1,4 +1,5 @@
 import axios from "axios";
+import {User} from "@/types/types";
 
 const api =  axios.create({
     baseURL: import.meta.env.VITE_APP_BACKEND_URL,
@@ -13,16 +14,20 @@ const apiToken = axios.create({
         "Content-Type": "application/json",
     },
 });
-
-const apiAuth = axios.create({
-    baseURL: import.meta.env.VITE_APP_BACKEND_URL,
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token")}`
-    },
-    withCredentials: true
-});
-
+export const signUpUserAuthenticated = async (user : User) => {
+    try {
+        const res = await api.post("/register", {
+           name: user.name,
+           email: user.email,
+           password: user.password,
+           password_confirmation: user.confirmPassword,
+        });
+        console.log(res.data);
+        return res.data;
+    } catch (err) {
+        console.log(err);
+    }
+}
 export const signInUserAuthenticated = async (email: string, password: string) => {
     try {
         await getToken();
@@ -36,6 +41,20 @@ export const signInUserAuthenticated = async (email: string, password: string) =
     }catch (err){
         console.log('')
     }
+};
+export const signOutUserAuthenticated = async () => {
+  try {
+      const res = await api.post("app/logout",{},{
+          headers : {
+              "Authorization": `Bearer ${localStorage.getItem("token")}`
+          },
+          withCredentials: true
+      });
+      console.log(res.data);
+      return res.data
+  }catch (err){
+      console.log(err);
+  }
 };
 
 export const getUser = async () => {
@@ -84,7 +103,12 @@ export const yourCourses = async() => {
 
 export const getCourseTopics = async (id : string | string[]) => {
     try {
-        const res = await api.get("topics/" + id);
+        const res = await api.get("app/topics/" + id,{
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            withCredentials: true
+        });
         return res.data;
     }catch(err) {
         console.log('Error getting course topics');
@@ -93,7 +117,12 @@ export const getCourseTopics = async (id : string | string[]) => {
 
 export const getCourse = async (course : number | string | string[]) => {
     try {
-        const res = await api.get("findCourse/" + course);
+        const res = await api.get("app/findCourse/" + course,{
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            withCredentials: true
+        });
         return res.data;
     }catch (err){
         console.error('Error getting course');
@@ -101,7 +130,12 @@ export const getCourse = async (course : number | string | string[]) => {
 };
 export const getTopic = async (id : number) => {
     try {
-        const res = await api.get('findTopic/' + id);
+        const res = await api.get('app/findTopic/' + id,{
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            withCredentials: true
+        });
         return res.data;
     }catch (err){
         console.log(err);
@@ -145,7 +179,6 @@ export const joinUserForCourse = async(course : number) => {
             },
             withCredentials : true
         });
-        console.log(res.data);
         return res.data;
     }catch (err){
         console.log(err);

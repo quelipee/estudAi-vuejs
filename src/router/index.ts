@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import TabsPage from '../views/TabsPage.vue'
-import {getToken, useCourseStore} from "@/estudAI/components";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,67 +10,35 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     component: () => import('@/views/guest/signIn.vue'),
-    // beforeEnter: (to, from, next) => {
-    //   const auth = useCourseStore();
-    //   if (auth.user){
-    //     next({
-    //       path: '/',
-    //     });
-    //   }
-    // }
+    beforeEnter: (to, from, next) => {
+      if (localStorage.getItem('token')){
+        next('/');
+      }else {
+        next();
+      }
+    }
   },
   {
     path: '/register',
     component: () => import('@/views/guest/signUp.vue'),
-    // beforeEnter: (to, from, next) => {
-    //   const auth = useCourseStore();
-    //   if (auth.user){
-    //     next({
-    //       path: '/',
-    //     });
-    //   }
-    // }
-  },
-  {
-    path: '/course/:id',
-    name: 'course',
-    props: true,
-    component: () => import('@/views/auth/CourseDetail.vue'),
-    // beforeEnter: (to, from, next) => {
-    //   //TODO ARRUMAR DEPOIS
-    //   const auth = useCourseStore();
-    //   if (!auth.user){
-    //     next('/login');
-    //   }else {
-    //     next();
-    //   }
-    // },
-  },
-  {
-    path: '/topic/:id',
-    name: 'topic',
-    props: true,
-    component: () => import('@/views/auth/TopicDetail.vue'),
-    // beforeEnter: (to, from, next) => {
-    //   const auth = useCourseStore();
-    //   if (!auth.user){
-    //     next('/login');
-    //   }else {
-    //     next();
-    //   }
-    // },
+    beforeEnter: (to, from, next) => {
+      if (localStorage.getItem('token')){
+        next('/');
+      }else {
+        next();
+      }
+    }
   },
   {
     path: '/tabs/',
     component: TabsPage,
-    // beforeEnter: (to, from, next) => {
-    //   // const auth = useCourseStore();
-    //   if (!localStorage.getItem('token')){
-    //     next('/login');
-    //   }else {
-    //     next();
-    //   }
-    // },
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.getItem('token')){
+        next('/login');
+      }else {
+        next();
+      }
+    },
     children: [
       {
         path: '',
@@ -88,7 +55,19 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'tab3',
         component: () => import('@/views/Tab3Page.vue')
-      }
+      },
+      {
+        path: '/course/:id',
+        name: 'course',
+        props: true,
+        component: () => import('@/views/auth/CourseDetail.vue'),
+      },
+      {
+        path: '/topic/:id',
+        name: 'topic',
+        props: true,
+        component: () => import('@/views/auth/TopicDetail.vue'),
+      },
     ]
   }
 ]

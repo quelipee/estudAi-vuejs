@@ -5,7 +5,6 @@
       <div class="container mx-auto px-4 space-y-5">
         <HeaderComponent/>
         <BannerComponent/>
-        <SearchComponent/>
         <FilterComponent/>
         <CourseComponent/>
       </div>
@@ -14,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { BannerComponent, HeaderComponent, SearchComponent, FilterComponent,
+import { BannerComponent, HeaderComponent, FilterComponent,
   CourseComponent,
   IonContent, IonPage,
  } from '@/../src/estudAI/components';

@@ -6,7 +6,7 @@ import {
     getCourseTopics,
     getTopic,
     getUser,
-    openChatForTopic,
+    openChatForTopic, signOutUserAuthenticated,
     yourCourses
 } from "@/api/api";
 import {Chat, Course, Topic, User} from "@/types/types";
@@ -58,7 +58,6 @@ export const useCourseStore = defineStore('book',{
             this.books = courses;
         },
         async updateYourCourses(courses: Course[]) {
-            console.log(courses);
             this.courses = courses;
         },
         async catchCourseTopics(id : string | string[]) : Promise<void>  {
@@ -91,7 +90,18 @@ export const useCourseStore = defineStore('book',{
             }catch (err){
                 console.log(err);
             }
-        }
+        },
+        async userSignOut() {
+            try {
+                this.user.name = '';
+                this.user.password = '';
+                this.user.email = '';
+                localStorage.removeItem('token');
+                await signOutUserAuthenticated();
+            }catch (err){
+                console.log(err);
+            }
+        },
     },
     // getters -> propriedades computadas
     getters:{
