@@ -26,14 +26,20 @@ import {getToken, signInUserAuthenticated} from "@/api/api";
 import { useCourseStore } from "@/stores/BookStore";
 import { useRouter, useRoute } from "vue-router";
 import { onMounted, ref, watch, computed } from "vue";
-import { IonText, IonLoading, IonContent, IonPage, IonInput, IonIcon, IonSpinner, IonHeader,IonToolbar,
+import { IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader,IonCardContent, IonText, IonLoading, IonContent, IonPage, IonInput, IonIcon, IonSpinner, IonHeader,IonToolbar,
     IonTitle, IonImg, IonLabel, IonButton, IonItem, IonCheckbox, IonSelect, IonSelectOption, IonToggle } from '@ionic/vue';
 import { menuOutline as menuIcon, bookOutline as bookIcon,
     settingsOutline as settingsIcon, eyeOffOutline, searchOutline, languageOutline, language, keyOutline,
     settings, shareSocialOutline, lockClosedOutline,documentTextOutline,informationCircleOutline, createOutline,
-    create,createSharp } from "ionicons/icons";
+    create,createSharp, peopleSharp } from "ionicons/icons";
 
 export {
+    peopleSharp,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonCardContent,
+    IonCard,
     IonText,
     IonLoading,
     createSharp,

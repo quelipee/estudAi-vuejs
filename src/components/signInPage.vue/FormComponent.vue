@@ -47,7 +47,7 @@ const submitForm = async () => {
   try {
     await signInUserAuthenticated(user.value.email,user.value.password);
     await auth.fetchUser();
-    await route.push('/');
+    await route.replace('/');
   }catch (error){
     console.log(error);
   }

@@ -1,29 +1,61 @@
 <template>
   <SearchBarComponent v-model:searchQuery="searchQuery"/>
-  <div class="grid grid-cols-2 gap-4">
-    <div
-        v-for="book in filteredBooks"
-        :key="book.id"
-        @click="signIn(book)"
-        class="p-4 bg-white shadow rounded-lg flex flex-col items-center">
-      <p class="bg-gray-500 border rounded-2xl p-2
-      justify-center text-sm text-white text-center mt-2">Status: {{ book.status }}</p>
-      <ion-img src="src/assets/img/3.png" alt="Book Cover" class="w-52 h-32 mb-4" />
-      <h2 class="text-md text-center font-semibold text-gray-700">{{ book.title }}</h2>
-      <p class="justify-center text-sm text-gray-500 text-center mt-2">{{ book.category }}</p>
-    </div>
+  <div v-if="loading" class="flex justify-center items-center h-64">
+    <p class="text-gray-500 text-lg">Carregando cursos...</p>
+  </div>
+
+  <div v-else-if="filteredBooks.length === 0" class="flex justify-center items-center h-64">
+    <p class="text-gray-500 text-lg">Nenhum curso disponível no momento.</p>
+  </div>
+
+  <div v-else class="grid grid-cols-2 gap-2">
+
+    <ion-card class="p-0 m-0 mb-4 flex flex-col justify-between"
+              v-for="book in filteredBooks"
+              :key="book.id"
+              @click="signIn(book)"
+              style="min-height: 300px;">
+      <ion-img :alt="'Image for ' + book.title" :src="'src/assets/img/' + (Math.floor(Math.random() * 5) + 1) + '.png'" />
+
+      <ion-card-header>
+        <ion-card-title class="text-sm">{{ book.title }}</ion-card-title>
+        <ion-card-subtitle>{{ book.status }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content class="text-sm p-2 flex-grow">
+        {{ book.category }}
+      </ion-card-content>
+
+      <!-- Alinhar o número de membros na parte inferior -->
+      <ion-card-subtitle class="p-2 mt-auto">
+        <p>+{{ book.users_count }} Membros <ion-icon :icon="peopleSharp"></ion-icon></p>
+      </ion-card-subtitle>
+    </ion-card>
+
   </div>
 </template>
 <script setup lang="ts">
-import {onMounted, SearchBarComponent, computed, ref, useCourseStore, IonImg} from "@/estudAI/components";
+import {onMounted, SearchBarComponent, computed, ref, useCourseStore,
+  IonImg, IonIcon, IonCard, IonCardContent,IonCardSubtitle,IonCardTitle,
+  IonCardHeader, peopleSharp, useRouter }
+  from "@/estudAI/components";
 import echo from "@/echo";
 import {joinUserForCourse} from "@/api/api";
-const courses = useCourseStore();
+import {loadingController} from "@ionic/vue";
 
+const courses = useCourseStore();
 const searchQuery = ref('');
+const router = useRouter()
+const loading = ref(true);
 
 onMounted(async () => {
-  await courses.fetchBooks();
+  try {
+    await courses.fetchBooks();
+  } catch (error) {
+    console.error('Erro ao carregar os tópicos:', error);
+  } finally {
+    loading.value = false;
+  }
   echo.channel('courses').listen('.CoursesEvent', function (event: any) {
     courses.updateBooks(event);
   });
@@ -38,7 +70,17 @@ const filteredBooks = computed(() => {
   );
 });
 
+const showLoading = async () => {
+  const loading = await loadingController.create({
+    message: 'Loading...',
+    duration: 2000,
+  });
+  await loading.present();
+};
+
 const signIn = async (course: any) => {
+  await showLoading();
   await joinUserForCourse(course.id);
+  await router.push('/');
 }
 </script>

@@ -13,6 +13,6 @@
 
 <script setup lang="ts">
 import { IonPage, IonContent, HeaderComponent, AvatarImgComponent,
-  SettingsComponent, ActivityComponent, EditProfileComponent }
+  SettingsComponent, ActivityComponent }
   from '@/estudAI/components';
 </script>

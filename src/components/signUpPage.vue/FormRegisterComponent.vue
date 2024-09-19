@@ -89,7 +89,7 @@ const submitForm = async () => {
   try {
     await signUpUserAuthenticated(user.value);
     await signInUserAuthenticated(user.value.email,user.value.password);
-    await router.push('/');
+    await router.replace('/');
   }catch (err){
     console.log(err);
   }
