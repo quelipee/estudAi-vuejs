@@ -10,7 +10,7 @@
           <div v-for="message in messages1" :key="message.id">
             <ContentComponent
                 :loading="loading"
-                :content="message.message"/>
+                :content="message.message.replace(/\n/g, '<br>')"/>
           </div>
           <OptionsComponent/>
         </div>

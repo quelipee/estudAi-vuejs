@@ -183,4 +183,12 @@ export const joinUserForCourse = async(course : number) => {
     }catch (err){
         console.log(err);
     }
+};
+export const message_day = async () => {
+    try {
+        const res = await api.get('message_day');
+        return res.data.message_day
+    }catch (err){
+        console.log(err);
+    }
 }

@@ -5,7 +5,7 @@ import {
     getCourses,
     getCourseTopics,
     getTopic,
-    getUser,
+    getUser, message_day,
     openChatForTopic, signOutUserAuthenticated,
     yourCourses
 } from "@/api/api";
@@ -22,6 +22,7 @@ export const useCourseStore = defineStore('book',{
         chat :{} as Array<Chat>,
         user: {} as User,
         topic : {} as Topic,
+        message_day : String
     }),
     // actions -> metodos
     actions:{
@@ -102,6 +103,9 @@ export const useCourseStore = defineStore('book',{
                 console.log(err);
             }
         },
+        async motivationalMessage() {
+            this.message_day = await message_day();
+        }
     },
     // getters -> propriedades computadas
     getters:{
