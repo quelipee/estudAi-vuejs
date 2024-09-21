@@ -156,7 +156,6 @@ export const openChatForTopic = async (course : number, topic: number, action : 
                 },
                 withCredentials: true
             });
-        console.log(res.data);
         return res.data;
     }catch (err){
         console.log('error open chat')
@@ -184,8 +183,7 @@ export const joinUserForCourse = async(course : number) => {
             },
             withCredentials : true
         });
-        console.log(res.data.course.courses);
-        return res.data.course.courses;
+        return res.data;
     }catch (err){
         console.log(err);
     }
@@ -197,4 +195,17 @@ export const message_day = async () => {
     }catch (err){
         console.log(err);
     }
-}
+};
+export const firstMessage = async (topic : number) => {
+    try {
+        const res = await api.get('app/firstMessage/' + topic,{
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            withCredentials : true
+        });
+        return res.data.message_history[0].message;
+    }catch (err){
+        console.log(err);
+    }
+};

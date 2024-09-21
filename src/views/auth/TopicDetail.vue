@@ -12,15 +12,19 @@
             <ion-spinner name="crescent" color="primary" class="text-indigo-600"></ion-spinner>
           </div>
 
-          <div v-else-if="messages1.length === 0" class="flex text-center justify-center items-center h-64">
+          <div v-else-if="message.length === 0" class="flex text-center justify-center items-center h-64">
             <p class="text-gray-500 text-md">Nenhum conteudo no momento, escolha umas das 3 opções.</p>
           </div>
+          <div v-else>
+            <div>
+              <ContentComponent :content="message.replace(/\n/g, '<br>')"/>
+            </div>
 
-          <div v-else
-               v-for="message in messages1" :key="message.id">
-            <ContentComponent
-                :loading="loading"
-                :content="message.message.replace(/\n/g, '<br>')"/>
+            <div v-for="message in messages1" :key="message.id">
+              <ContentComponent
+                  :loading="loading"
+                  :content="message.message.replace(/\n/g, '<br>')"/>
+            </div>
           </div>
           <OptionsComponent/>
         </div>
@@ -35,6 +39,7 @@
   } from '@/estudAI/components';
   import echo from "@/echo";
   import {nextTick} from "vue";
+  import {firstMessage} from "@/api/api";
 
   const chat = useCourseStore();
   const route = useRoute();
@@ -43,11 +48,13 @@
   const chatContainer = ref<HTMLIonContentElement | null>(null);
   const title = ref('');
   const subTitle = ref('');
-
+  const message = ref('');
   onMounted(async () => {
     setTimeout(() => {
       loading.value = false;
     }, 2500);
+
+    message.value = await firstMessage(Number(route.params.id));
 
     await chat.setTopic(Number(route.params.id));
     title.value = chat.selectedTopic.title

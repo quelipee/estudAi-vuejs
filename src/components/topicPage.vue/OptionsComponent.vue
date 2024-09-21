@@ -24,23 +24,7 @@ import { useCourseStore } from "@/stores/BookStore";
 import { IonCard, IonCardTitle } from "@/estudAI/components";
 
   const chat = useCourseStore();
-  // Função para lidar com cliques nos cards
-    const handleAction = async (action: string) => {
-      switch (action) {
-        case 'Exercícios':
-          await chat.openChat(chat.selectedTopic.course_id, chat.selectedTopic.id, action);
-          break;
-
-        case 'avançar':
-          await chat.openChat(chat.selectedTopic.course_id, chat.selectedTopic.id, action);
-          console.log('Continuar com o curso');
-          break;
-
-        case 'Mostrar Explicação Detalhada':
-          await chat.openChat(chat.selectedTopic.course_id, chat.selectedTopic.id, action);
-          console.log('Mostrar Explicação Detalhada');
-          break;
-      }
-    };
-  //     await chat.openChat(chat.selectedTopic.course_id,chat.selectedTopic.id);
+       const handleAction = async (action: string) => {
+         await chat.openChat(chat.selectedTopic.course_id, chat.selectedTopic.id, action);
+       }
 </script>
