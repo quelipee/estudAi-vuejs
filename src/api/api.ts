@@ -80,7 +80,12 @@ export const getToken = async () => {
 }
 export const getCourses = async() => {
     try {
-        const res = await api.get("courses");
+        const res = await api.get("app/courses",{
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            withCredentials: true
+        });
         return res.data;
     }catch(err) {
         console.log('Error getting courses');

@@ -65,8 +65,7 @@ const filteredBooks = computed(() => {
   return courses.books.filter(book =>
       book.title.toLowerCase().includes(searchQuery.value.toLowerCase()) &&
       book.status !== 'inactive' &&
-      book.status !== 'cancelled' &&
-      !courses.courses.some(course => course.id === book.id)
+      book.status !== 'cancelled'
   );
 });
 

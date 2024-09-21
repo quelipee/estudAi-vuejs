@@ -1,26 +1,27 @@
 <template>
-  <div>
-    <div class="flex flex-row items-center space-x-1 justify-between mb-5">
-      <div @click="handleAction('Exercícios')"
-           class="cursor-pointer p-3 bg-blue-200 text-blue-800 rounded-md
-           shadow-sm hover:bg-blue-300 transition-colors w-1/2 text-center">
-        <h3 class="text-sm font-medium">Exercícios</h3>
-      </div>
-      <div @click="handleAction('Mostrar Explicação Detalhada')"
-           class="cursor-pointer p-3 bg-green-200 text-green-800 rounded-md
-           shadow-sm hover:bg-green-300 transition-colors w-1/2 text-center">
-        <h3 class="text-sm font-medium">Explicação</h3>
-      </div>
-      <div @click="handleAction('Continuar')"
-           class="cursor-pointer p-3 bg-gray-200 text-gray-800 rounded-md
-           shadow-sm hover:bg-gray-300 transition-colors w-1/2 text-center">
-        <h3 class="text-sm font-medium">Continuar</h3>
-      </div>
-    </div>
+  <div class="grid grid-cols-3 justify-center items-center text-center">
+    <ion-card @click="handleAction('Exercícios')">
+        <ion-card-title>
+          <p class="text-sm text-gray-600 p-3">Exercícios</p>
+        </ion-card-title>
+    </ion-card>
+
+    <ion-card @click="handleAction('explicação')">
+        <ion-card-title>
+          <p class="text-sm text-gray-600 p-3">explicação</p>
+        </ion-card-title>
+    </ion-card>
+
+    <ion-card @click="handleAction('avançar')">
+        <ion-card-title>
+          <p class="text-sm text-gray-600 p-3">avançar</p>
+        </ion-card-title>
+    </ion-card>
   </div>
 </template>
 <script setup lang="ts">
-import {useCourseStore} from "@/stores/BookStore";
+import { useCourseStore } from "@/stores/BookStore";
+import { IonCard, IonCardTitle } from "@/estudAI/components";
 
   const chat = useCourseStore();
   // Função para lidar com cliques nos cards
@@ -30,7 +31,7 @@ import {useCourseStore} from "@/stores/BookStore";
           await chat.openChat(chat.selectedTopic.course_id, chat.selectedTopic.id, action);
           break;
 
-        case 'Continuar':
+        case 'avançar':
           await chat.openChat(chat.selectedTopic.course_id, chat.selectedTopic.id, action);
           console.log('Continuar com o curso');
           break;

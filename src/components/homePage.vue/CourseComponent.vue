@@ -26,7 +26,7 @@ import {IonImg, IonLabel, useRouter, onMounted, useCourseStore, SearchComponent,
 
   const courses = useCourseStore();
   const route = useRouter()
-const loading = ref(true);
+  const loading = ref(true);
   const searchQuery = ref('');
   const signIn = (course : Course) => {
     courses.setCourse(course.id);
@@ -54,7 +54,9 @@ const loading = ref(true);
 
 const filteredBooks = computed(() => {
   return courses.courses.filter(book =>
-      book.title.toLowerCase().includes(searchQuery.value.toLowerCase()),
+      book.title.toLowerCase().includes(searchQuery.value.toLowerCase()) &&
+      book.status !== 'inactive' &&
+      book.status !== 'cancelled'
   );
 });
 

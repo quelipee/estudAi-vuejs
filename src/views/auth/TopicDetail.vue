@@ -7,7 +7,17 @@
                 :topicTitle="title"
                 :subtitle="subTitle"/>
           <img src="../../assets/img/1.png" alt="Imagem do Tópico" class="w-full h-auto mb-4 rounded-md" />
-          <div v-for="message in messages1" :key="message.id">
+
+          <div v-if="loading" class="flex justify-center items-center h-full">
+            <ion-spinner name="crescent" color="primary" class="text-indigo-600"></ion-spinner>
+          </div>
+
+          <div v-else-if="messages1.length === 0" class="flex text-center justify-center items-center h-64">
+            <p class="text-gray-500 text-md">Nenhum conteudo no momento, escolha umas das 3 opções.</p>
+          </div>
+
+          <div v-else
+               v-for="message in messages1" :key="message.id">
             <ContentComponent
                 :loading="loading"
                 :content="message.message.replace(/\n/g, '<br>')"/>
@@ -21,7 +31,8 @@
   <script lang="ts" setup>
   import {
     IonContent, IonPage, useCourseStore, ContentComponent, HeaderComponent, TitleTopicComponent,
-    OptionsComponent, useRoute, ref, onMounted } from '@/estudAI/components';
+    OptionsComponent, useRoute, ref, onMounted, IonSpinner
+  } from '@/estudAI/components';
   import echo from "@/echo";
   import {nextTick} from "vue";
 
