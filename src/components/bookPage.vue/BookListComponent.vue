@@ -80,6 +80,7 @@ const showLoading = async () => {
 const signIn = async (course: any) => {
   await showLoading();
   await joinUserForCourse(course.id);
+  await courses.fetchBooks();
   await router.push('/');
 }
 </script>

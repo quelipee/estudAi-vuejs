@@ -14,7 +14,7 @@ import {Chat, Course, Topic, User} from "@/types/types";
 export const useCourseStore = defineStore('book',{
     // state -> propriedades reativas
     state: () => ({
-        books: [] as Array<any>,
+        books: [] as Array<Course>,
         topics: [] as Array<Topic>,
         courses : [] as Array<Course>,
         selectedCourse : {} as Course,

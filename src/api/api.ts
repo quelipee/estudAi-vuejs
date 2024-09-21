@@ -184,7 +184,8 @@ export const joinUserForCourse = async(course : number) => {
             },
             withCredentials : true
         });
-        return res.data;
+        console.log(res.data.course.courses);
+        return res.data.course.courses;
     }catch (err){
         console.log(err);
     }
