@@ -17,6 +17,10 @@
       <ion-icon slot="end" :icon="eyeOffOutline"></ion-icon>
     </ion-item>
 
+    <ion-item lines="none" v-if="errorLogin">
+      <p class="text-sm text-center w-full text-red-500 font-semibold">{{ errorLogin }}</p>
+    </ion-item>
+
     <ion-item lines="none">
       <ion-checkbox slot="start"></ion-checkbox>
       <ion-label>Lembre de mim</ion-label>
@@ -37,6 +41,10 @@ import {User} from "@/types/types";
 
 const auth = useCourseStore();
 const route = useRouter();
+const errorLogin = ref(null);
+const clearError = () =>{
+  errorLogin.value = null;
+};
 const user = ref<User>({
   name: "",
   email: '',
@@ -44,12 +52,14 @@ const user = ref<User>({
 });
 
 const submitForm = async () => {
-  try {
-    await signInUserAuthenticated(user.value.email,user.value.password);
-    await auth.fetchUser();
-    await route.replace('/');
-  }catch (error){
-    console.log(error);
-  }
+    await signInUserAuthenticated(user.value.email,user.value.password).then(() => {
+      auth.fetchUser();
+      route.replace('/');
+    }).catch(error => {
+      errorLogin.value = error.response.data.message
+      setTimeout(() => {
+        clearError();
+      },5000);
+    });
 };
 </script>

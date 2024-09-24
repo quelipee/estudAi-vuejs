@@ -2,27 +2,15 @@
 http://ionicframework.com/docs/theming/ */
 /* src/theme/variables.scss */
 :root {
-    /* Modo claro (Light Theme) */
+    --ion-color-primary: #3880ff;
     --ion-background-color: #ffffff;
     --ion-text-color: #000000;
 }
 
 @media (prefers-color-scheme: light) {
     :root {
-        /* Modo escuro (Dark Theme) */
-        --ion-background-color: #252424;
-        --ion-text-color: #ffffff;
+        --ion-background-color: #ffffff;
+        --ion-text-color: #000000;
     }
 }
 
-body.dark {
-    /* Forçar o modo escuro quando a classe 'dark' é adicionada */
-    --ion-background-color: #252424;;
-    --ion-text-color: #ffffff;
-}
-
-body {
-    /* Definir cores usando variáveis CSS */
-    background-color: var(--ion-background-color);
-    color: var(--ion-text-color);
-}

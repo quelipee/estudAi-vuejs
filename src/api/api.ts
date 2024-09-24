@@ -3,6 +3,7 @@ import {User} from "@/types/types";
 
 const api =  axios.create({
     baseURL: import.meta.env.VITE_APP_BACKEND_URL,
+    withCredentials: true,
     headers: {
         "Content-Type": "application/json"
     }
@@ -10,6 +11,7 @@ const api =  axios.create({
 
 const apiToken = axios.create({
     baseURL: import.meta.env.VITE_APP_TOKEN,
+    withCredentials: true,
     headers: {
         "Content-Type": "application/json",
     },
@@ -28,19 +30,24 @@ export const signUpUserAuthenticated = async (user : User) => {
         console.log(err);
     }
 }
-export const signInUserAuthenticated = async (email: string, password: string) => {
+export const getToken = async () => {
     try {
+        return await apiToken.get('/sanctum/csrf-cookie');
+    }catch (err){
+        console.log('error get token!!')
+    }
+}
+export const signInUserAuthenticated = async (email: string, password: string) => {
         await getToken();
         const res = await api.post("login",{
             email : email,
             password: password,
+        }).then((res : any) => {
+            const token = res.data.user.token;
+            localStorage.setItem("token", token);
+            return res.data;
         });
-        const token = res.data.user.token;
-        localStorage.setItem("token", token);
-        return res.data;
-    }catch (err){
-        console.log('')
-    }
+
 };
 export const signOutUserAuthenticated = async () => {
   try {
@@ -48,9 +55,7 @@ export const signOutUserAuthenticated = async () => {
           headers : {
               "Authorization": `Bearer ${localStorage.getItem("token")}`
           },
-          withCredentials: true
       });
-      console.log(res.data);
       return res.data
   }catch (err){
       console.log(err);
@@ -63,7 +68,6 @@ export const getUser = async () => {
           headers:{
               "Authorization": `Bearer ${localStorage.getItem("token")}`
           },
-          withCredentials:true
       });
       return res.data.profile;
   }catch (error){
@@ -71,20 +75,12 @@ export const getUser = async () => {
   }
 };
 
-export const getToken = async () => {
-    try {
-        return await apiToken.get('/sanctum/csrf-cookie');
-    }catch (err){
-        console.log('error get token!!')
-    }
-}
 export const getCourses = async() => {
     try {
         const res = await api.get("app/courses",{
             headers : {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            withCredentials: true
         });
         return res.data;
     }catch(err) {
@@ -98,7 +94,6 @@ export const yourCourses = async() => {
             headers : {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            withCredentials : true
         });
         return res.data.courses;
     }catch (err){
@@ -112,9 +107,8 @@ export const getCourseTopics = async (id : string | string[]) => {
             headers : {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            withCredentials: true
         });
-        return res.data;
+        return res.data.topics;
     }catch(err) {
         console.log('Error getting course topics');
     }
@@ -126,9 +120,8 @@ export const getCourse = async (course : number | string | string[]) => {
             headers : {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            withCredentials: true
         });
-        return res.data;
+        return res.data.course;
     }catch (err){
         console.error('Error getting course');
     }
@@ -139,9 +132,8 @@ export const getTopic = async (id : number) => {
             headers : {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            withCredentials: true
         });
-        return res.data;
+        return res.data.course;
     }catch (err){
         console.log(err);
     }
@@ -154,7 +146,6 @@ export const openChatForTopic = async (course : number, topic: number, action : 
                 headers : {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`
                 },
-                withCredentials: true
             });
         return res.data;
     }catch (err){
@@ -167,9 +158,8 @@ export const fetchMessageChat = async (topicId : number) => {
             headers : {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            withCredentials : true
         });
-        return res.data.message_history;
+        return res.data.responseChat.message_history;
     }catch (err){
         console.log('Error fetching messageChat', err);
     }
@@ -181,7 +171,6 @@ export const joinUserForCourse = async(course : number) => {
             headers : {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            withCredentials : true
         });
         return res.data;
     }catch (err){
@@ -198,13 +187,12 @@ export const message_day = async () => {
 };
 export const firstMessage = async (topic : number) => {
     try {
-        const res = await api.get('app/firstMessage/' + topic,{
+        const res = await api.get('app/introduction/' + topic,{
             headers : {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            withCredentials : true
         });
-        return res.data.message_history[0].message;
+        return res.data.first_response.message_history[0].message;
     }catch (err){
         console.log(err);
     }

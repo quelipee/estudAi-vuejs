@@ -12,7 +12,8 @@
   <div v-else class="grid grid-cols-2 gap-4">
         <div v-for="course in filteredBooks" :key="course.id"
              @click="signIn(course)" class="flex flex-col items-center text-center">
-          <ion-img :alt="'Image for ' + course.title" :src="'src/assets/img/' + (Math.floor(Math.random() * 5) + 1) + '.png'" />
+             <!-- TODO ADJUSTS -->
+          <img :alt="'Image for ' + course.title" src="../../assets/img/2.png">
           <ion-label class="font-semibold text-gray-600 " for="Python">{{ course.title }}</ion-label>
         </div>
   </div>

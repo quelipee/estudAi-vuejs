@@ -15,7 +15,8 @@
               :key="book.id"
               @click="signIn(book)"
               style="min-height: 300px;">
-      <ion-img :alt="'Image for ' + book.title" :src="'src/assets/img/' + (Math.floor(Math.random() * 5) + 1) + '.png'" />
+      <!-- <ion-img :alt="'Image for ' + book.title" :src="'src/assets/img/' + (Math.floor(Math.random() * 5) + 1) + '.png'" /> -->
+      <img :alt="'Image for ' + book.title" src="../../assets/img/3.png" />
 
       <ion-card-header>
         <ion-card-title class="text-sm">{{ book.title }}</ion-card-title>
@@ -61,13 +62,13 @@ onMounted(async () => {
   });
 });
 
-const filteredBooks = computed(() => {
+const filteredBooks = ref(computed(() => {
   return courses.books.filter(book =>
       book.title.toLowerCase().includes(searchQuery.value.toLowerCase()) &&
       book.status !== 'inactive' &&
       book.status !== 'cancelled'
   );
-});
+}));
 
 const showLoading = async () => {
   const loading = await loadingController.create({

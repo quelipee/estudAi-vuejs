@@ -6,6 +6,7 @@ export interface Course {
     created_at: string;
     category: string;
     description: string;
+    users_count?: number
 }
 
 export interface Topic {
